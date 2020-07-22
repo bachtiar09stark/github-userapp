@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Github User App</string>
+    <string name="txt_user_app">User App</string>
+    <string name="tv_github_user">Pengguna Github</string>
+    <string name="txt_username">Nama Pengguna</string>
+    <string name="txt_location">Lokasi</string>
+    <string name="txt_company">Perusahaan:</string>
+    <string name="icon_more_detail">Ikon Lebih Detail</string>
+    <string name="image_avatar_user">Avatar Pengguna</string>
+    <string name="search">Cari</string>
+    <string name="search_hint">Cari nama pengguna</string>
+    <string name="txt_name">Nama</string>
+    <string name="tab_followers">PENGIKUT</string>
+    <string name="tab_following">MENGIKUTI</string>
+    <string name="settings">Pengaturan</string>
+    <string name="tv_welcome">MARI MULAI MENCARI\nPENGGUNA GITHUB</string>
+    <string name="image_search">Image Search</string>
+    <string name="favorite">Favorite</string>
+    <string name="github_mark">Github Mark</string>
+    <string name="github_logo">Github Logo</string>
+    <string name="connection_error">Connection Error</string>
+    <string name="image_connection_error">Image Connection Error</string>
+    <string name="tv_not_found">Not Found\nConnection Error</string>
+    <string name="favorite_user">Favorite User</string>
+    <string name="txt_delete_all">Delete All</string>
+    <string name="txt_all_favorites_deleted">All Favorites Deleted</string>
+    <string name="txt_favorite_deleted">Favorite Deleted</string>
+    <string name="txt_favorite_saved">Favorite saved</string>
+    <string name="key_reminder">reminder</string>
+    <string name="txt_reminder">Reminder at 9.00 AM</string>
+    <string name="key_language">language</string>
+    <string name="txt_language">Select Language</string>
+    <string name="txt_language_selected">Indonesia</string>
+    <string name="title_reminder">Reminder</string>
+    <string name="content_title_reminder">Let\'s find popular user on Github!</string>
+    <string name="reminder_off">Reminder OFF</string>
+    <string name="reminder_on">Reminder ON</string>
+</resources>
