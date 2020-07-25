@@ -19,8 +19,6 @@ import com.ngoding.consumerapp.adapter.FavoriteAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView imgFavNotFound;
-
     public static final String TABLE_NAME = "favorite_table";
     public static final String COLUMN_USERNAME = "username";
     public static final String COLUMN_AVATAR = "avatar";
@@ -28,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
     private static final Uri URI_FAVORITE = Uri.parse(
             "content://" + AUTHORITY + "/" + TABLE_NAME);
     private static final int LOADER_FAVORITE = 1;
+    private ImageView imgFavNotFound;
     private FavoriteAdapter favoriteAdapter;
+    private RecyclerView recyclerView;
     private final LoaderManager.LoaderCallbacks<Cursor> mLoaderCallbacks =
             new LoaderManager.LoaderCallbacks<Cursor>() {
                 @NonNull
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-                    if (data != null) {
+                    if (recyclerView != null) {
                         favoriteAdapter.setFavorites(data);
                         imgFavNotFound.setVisibility(View.GONE);
                     } else {
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         imgFavNotFound = findViewById(R.id.img_fav_not_found);
 
-        RecyclerView recyclerView = findViewById(R.id.rv_favorite);
+        recyclerView = findViewById(R.id.rv_favorite);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
