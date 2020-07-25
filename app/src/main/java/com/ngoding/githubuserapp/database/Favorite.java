@@ -22,17 +22,6 @@ public class Favorite implements Parcelable {
     public static final String COLUMN_FOLLOWERS = "followers";
     public static final String COLUMN_FOLLOWING = "following";
 
-    public static final Creator<Favorite> CREATOR = new Creator<Favorite>() {
-        @Override
-        public Favorite createFromParcel(Parcel in) {
-            return new Favorite(in);
-        }
-
-        @Override
-        public Favorite[] newArray(int size) {
-            return new Favorite[size];
-        }
-    };
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(index = true, name = COLUMN_ID)
     private long id;
@@ -51,7 +40,6 @@ public class Favorite implements Parcelable {
     @ColumnInfo(name = COLUMN_FOLLOWING)
     private String following;
 
-    /*
     public Favorite(String username, String realName, String avatar, String company, String location, String followers, String following) {
         this.username = username;
         this.realName = realName;
@@ -61,13 +49,12 @@ public class Favorite implements Parcelable {
         this.followers = followers;
         this.following = following;
     }
-     */
 
     public Favorite() {
     }
 
     protected Favorite(Parcel in) {
-        id = in.readInt();
+        id = in.readLong();
         username = in.readString();
         realName = in.readString();
         avatar = in.readString();
@@ -93,6 +80,18 @@ public class Favorite implements Parcelable {
     public int describeContents() {
         return 0;
     }
+
+    public static final Creator<Favorite> CREATOR = new Creator<Favorite>() {
+        @Override
+        public Favorite createFromParcel(Parcel in) {
+            return new Favorite(in);
+        }
+
+        @Override
+        public Favorite[] newArray(int size) {
+            return new Favorite[size];
+        }
+    };
 
     public long getId() {
         return id;
