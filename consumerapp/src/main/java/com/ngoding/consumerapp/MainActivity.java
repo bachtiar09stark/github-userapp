@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private static final int LOADER_FAVORITE = 1;
     private ImageView imgFavNotFound;
     private FavoriteAdapter favoriteAdapter;
-    private RecyclerView recyclerView;
     private final LoaderManager.LoaderCallbacks<Cursor> mLoaderCallbacks =
             new LoaderManager.LoaderCallbacks<Cursor>() {
                 @NonNull
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-                    if (recyclerView != null) {
+                    if (data != null) {
                         favoriteAdapter.setFavorites(data);
                         imgFavNotFound.setVisibility(View.GONE);
                     } else {
@@ -63,8 +62,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         imgFavNotFound = findViewById(R.id.img_fav_not_found);
+        imgFavNotFound.setVisibility(View.VISIBLE);
 
-        recyclerView = findViewById(R.id.rv_favorite);
+        RecyclerView recyclerView = findViewById(R.id.rv_favorite);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
