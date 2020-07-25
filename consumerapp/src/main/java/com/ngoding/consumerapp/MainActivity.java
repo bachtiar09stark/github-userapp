@@ -1,5 +1,6 @@
 package com.ngoding.consumerapp;
 
+import android.content.UriMatcher;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,19 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private FavoriteAdapter favoriteAdapter;
+
+    public static final String AUTHORITY = "com.ngoding.githubuserapp";
+
+    public static final int ID_PERSON_DATA = 1;
+
+    public static final int ID_PERSON_DATA_ITEM = 2;
+
+    public static final UriMatcher URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
+
+    static {
+        URI_MATCHER.addURI(AUTHORITY, Favorite.TABLE_NAME, ID_PERSON_DATA);
+        URI_MATCHER.addURI(AUTHORITY, Favorite.TABLE_NAME + "/*", ID_PERSON_DATA_ITEM);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
