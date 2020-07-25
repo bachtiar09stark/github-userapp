@@ -20,29 +20,11 @@ public class MainActivity extends AppCompatActivity {
     public static final String TABLE_NAME = "favorite_table";
     public static final String COLUMN_USERNAME = "username";
     public static final String COLUMN_AVATAR = "avatar";
-
-    private FavoriteAdapter favoriteAdapter;
     private static final String AUTHORITY = "com.ngoding.githubuserapp";
     private static final Uri URI_FAVORITE = Uri.parse(
             "content://" + AUTHORITY + "/" + TABLE_NAME);
     private static final int LOADER_FAVORITE = 1;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        RecyclerView recyclerView = findViewById(R.id.rv_favorite);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
-
-        favoriteAdapter = new FavoriteAdapter();
-        favoriteAdapter.notifyDataSetChanged();
-        recyclerView.setAdapter(favoriteAdapter);
-
-        LoaderManager.getInstance(this).initLoader(LOADER_FAVORITE, null, mLoaderCallbacks);
-    }
-
+    private FavoriteAdapter favoriteAdapter;
     private final LoaderManager.LoaderCallbacks<Cursor> mLoaderCallbacks =
             new LoaderManager.LoaderCallbacks<Cursor>() {
                 @NonNull
@@ -65,4 +47,20 @@ public class MainActivity extends AppCompatActivity {
                     favoriteAdapter.setFavorites(null);
                 }
             };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        RecyclerView recyclerView = findViewById(R.id.rv_favorite);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+
+        favoriteAdapter = new FavoriteAdapter();
+        favoriteAdapter.notifyDataSetChanged();
+        recyclerView.setAdapter(favoriteAdapter);
+
+        LoaderManager.getInstance(this).initLoader(LOADER_FAVORITE, null, mLoaderCallbacks);
+    }
 }
