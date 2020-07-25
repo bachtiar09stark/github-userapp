@@ -13,6 +13,13 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <provider
+            android:name=".provider.FavoriteContentProvider"
+            android:authorities="com.ngoding.githubuserapp"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.ngoding.githubuserapp.READ_DATA"
+            android:writePermission="com.ngoding.githubuserapp.WRITE_DATABASE"/>
 
         <receiver
             android:name=".receiver.AlarmReceiver"

@@ -1,7 +1,9 @@
 package com.ngoding.githubuserapp.database;
 
+import android.content.ContentValues;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.BaseColumns;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -11,6 +13,15 @@ import androidx.room.PrimaryKey;
 public class Favorite implements Parcelable {
 
     public static final String TABLE_NAME = "favorite_table";
+    public static final String COLUMN_ID = BaseColumns._ID;
+    public static final String COLUMN_USERNAME = "username";
+    public static final String COLUMN_REALNAME = "realName";
+    public static final String COLUMN_AVATAR = "avatar";
+    public static final String COLUMN_COMPANY = "company";
+    public static final String COLUMN_LOCATION = "location";
+    public static final String COLUMN_FOLLOWERS = "followers";
+    public static final String COLUMN_FOLLOWING = "following";
+
     public static final Creator<Favorite> CREATOR = new Creator<Favorite>() {
         @Override
         public Favorite createFromParcel(Parcel in) {
@@ -23,20 +34,21 @@ public class Favorite implements Parcelable {
         }
     };
     @PrimaryKey(autoGenerate = true)
-    private int id;
-    @ColumnInfo(name = "username")
+    @ColumnInfo(index = true, name = COLUMN_ID)
+    private long id;
+    @ColumnInfo(name = COLUMN_USERNAME)
     private String username;
-    @ColumnInfo(name = "realName")
+    @ColumnInfo(name = COLUMN_REALNAME)
     private String realName;
-    @ColumnInfo(name = "avatar")
+    @ColumnInfo(name = COLUMN_AVATAR)
     private String avatar;
-    @ColumnInfo(name = "company")
+    @ColumnInfo(name = COLUMN_COMPANY)
     private String company;
-    @ColumnInfo(name = "location")
+    @ColumnInfo(name = COLUMN_LOCATION)
     private String location;
-    @ColumnInfo(name = "followers")
+    @ColumnInfo(name = COLUMN_FOLLOWERS)
     private String followers;
-    @ColumnInfo(name = "following")
+    @ColumnInfo(name = COLUMN_FOLLOWING)
     private String following;
 
     public Favorite(String username, String realName, String avatar, String company, String location, String followers, String following) {
@@ -47,6 +59,9 @@ public class Favorite implements Parcelable {
         this.location = location;
         this.followers = followers;
         this.following = following;
+    }
+
+    public Favorite() {
     }
 
     public Favorite(Parcel in) {
@@ -62,7 +77,7 @@ public class Favorite implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
+        dest.writeLong(id);
         dest.writeString(username);
         dest.writeString(realName);
         dest.writeString(avatar);
@@ -77,11 +92,11 @@ public class Favorite implements Parcelable {
         return 0;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -97,24 +112,76 @@ public class Favorite implements Parcelable {
         return realName;
     }
 
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
     public String getAvatar() {
         return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getCompany() {
         return company;
     }
 
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
     public String getLocation() {
         return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getFollowers() {
         return followers;
     }
 
+    public void setFollowers(String followers) {
+        this.followers = followers;
+    }
+
     public String getFollowing() {
         return following;
+    }
+
+    public void setFollowing(String following) {
+        this.following = following;
+    }
+
+    public static Favorite fromContentValues(ContentValues values) {
+        Favorite favorite = new Favorite();
+        if (values != null && values.containsKey(COLUMN_ID)) {
+            favorite.setId(values.getAsInteger(COLUMN_ID));
+        }
+        if (values != null && values.containsKey(COLUMN_USERNAME)) {
+            favorite.setUsername(values.getAsString(COLUMN_USERNAME));
+        }
+        if (values != null && values.containsKey(COLUMN_REALNAME)) {
+            favorite.setRealName(values.getAsString(COLUMN_REALNAME));
+        }
+        if (values != null && values.containsKey(COLUMN_AVATAR)) {
+            favorite.setAvatar(values.getAsString(COLUMN_AVATAR));
+        }
+        if (values != null && values.containsKey(COLUMN_COMPANY)) {
+            favorite.setCompany(values.getAsString(COLUMN_COMPANY));
+        }
+        if (values != null && values.containsKey(COLUMN_LOCATION)) {
+            favorite.setLocation(values.getAsString(COLUMN_LOCATION));
+        }
+        if (values != null && values.containsKey(COLUMN_FOLLOWERS)) {
+            favorite.setFollowers(values.getAsString(COLUMN_FOLLOWERS));
+        }
+        if (values != null && values.containsKey(COLUMN_FOLLOWING)) {
+            favorite.setFollowing(values.getAsString(COLUMN_FOLLOWING));
+        }
+        return favorite;
     }
 
 }
