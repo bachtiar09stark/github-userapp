@@ -49,7 +49,7 @@ public class Favorite implements Parcelable {
         this.following = following;
     }
 
-    public Favorite(Parcel in) {
+    protected Favorite(Parcel in) {
         id = in.readInt();
         username = in.readString();
         realName = in.readString();
