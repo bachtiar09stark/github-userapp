@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         imgFavNotFound = findViewById(R.id.img_fav_not_found);
-        imgFavNotFound.setVisibility(View.VISIBLE);
 
         RecyclerView recyclerView = findViewById(R.id.rv_favorite);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
