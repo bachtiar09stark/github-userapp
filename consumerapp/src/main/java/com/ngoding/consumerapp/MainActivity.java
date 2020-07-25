@@ -3,6 +3,8 @@ package com.ngoding.consumerapp;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ngoding.consumerapp.adapter.FavoriteAdapter;
 
 public class MainActivity extends AppCompatActivity {
+
+    ImageView imgFavNotFound;
 
     public static final String TABLE_NAME = "favorite_table";
     public static final String COLUMN_USERNAME = "username";
@@ -39,7 +43,12 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-                    favoriteAdapter.setFavorites(data);
+                    if (data != null) {
+                        favoriteAdapter.setFavorites(data);
+                        imgFavNotFound.setVisibility(View.GONE);
+                    } else {
+                        imgFavNotFound.setVisibility(View.VISIBLE);
+                    }
                 }
 
                 @Override
@@ -52,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        imgFavNotFound = findViewById(R.id.img_fav_not_found);
 
         RecyclerView recyclerView = findViewById(R.id.rv_favorite);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
