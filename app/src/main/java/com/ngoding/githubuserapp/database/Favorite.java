@@ -15,7 +15,7 @@ public class Favorite implements Parcelable {
     public static final String TABLE_NAME = "favorite_table";
     public static final String COLUMN_ID = BaseColumns._ID;
     public static final String COLUMN_USERNAME = "username";
-    public static final String COLUMN_REALNAME = "realName";
+    public static final String COLUMN_REAL_NAME = "realName";
     public static final String COLUMN_AVATAR = "avatar";
     public static final String COLUMN_COMPANY = "company";
     public static final String COLUMN_LOCATION = "location";
@@ -38,7 +38,7 @@ public class Favorite implements Parcelable {
     private long id;
     @ColumnInfo(name = COLUMN_USERNAME)
     private String username;
-    @ColumnInfo(name = COLUMN_REALNAME)
+    @ColumnInfo(name = COLUMN_REAL_NAME)
     private String realName;
     @ColumnInfo(name = COLUMN_AVATAR)
     private String avatar;
@@ -51,6 +51,7 @@ public class Favorite implements Parcelable {
     @ColumnInfo(name = COLUMN_FOLLOWING)
     private String following;
 
+    /*
     public Favorite(String username, String realName, String avatar, String company, String location, String followers, String following) {
         this.username = username;
         this.realName = realName;
@@ -60,6 +61,7 @@ public class Favorite implements Parcelable {
         this.followers = followers;
         this.following = following;
     }
+     */
 
     public Favorite() {
     }
@@ -164,8 +166,8 @@ public class Favorite implements Parcelable {
         if (values != null && values.containsKey(COLUMN_USERNAME)) {
             favorite.setUsername(values.getAsString(COLUMN_USERNAME));
         }
-        if (values != null && values.containsKey(COLUMN_REALNAME)) {
-            favorite.setRealName(values.getAsString(COLUMN_REALNAME));
+        if (values != null && values.containsKey(COLUMN_REAL_NAME)) {
+            favorite.setRealName(values.getAsString(COLUMN_REAL_NAME));
         }
         if (values != null && values.containsKey(COLUMN_AVATAR)) {
             favorite.setAvatar(values.getAsString(COLUMN_AVATAR));

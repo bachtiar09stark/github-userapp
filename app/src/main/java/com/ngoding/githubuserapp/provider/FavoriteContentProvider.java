@@ -67,6 +67,7 @@ public class FavoriteContentProvider extends ContentProvider {
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
         Log.d(TAG, "insert");
+
         switch (URI_MATCHER.match(uri)) {
             case ID_PERSON_DATA:
                 if (getContext() != null) {

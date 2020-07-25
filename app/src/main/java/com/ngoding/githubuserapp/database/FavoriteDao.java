@@ -35,7 +35,7 @@ public interface FavoriteDao {
     @Query("SELECT * FROM " + Favorite.TABLE_NAME)
     Cursor selectAll();
 
-    @Query("DELETE FROM " +Favorite.TABLE_NAME + " WHERE " + Favorite.COLUMN_ID + " = :id")
+    @Query("DELETE FROM " + Favorite.TABLE_NAME + " WHERE " + Favorite.COLUMN_ID + " = :id")
     int deleteById(long id);
 
     @Update

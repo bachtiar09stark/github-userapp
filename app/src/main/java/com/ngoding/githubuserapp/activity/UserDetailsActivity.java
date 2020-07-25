@@ -165,8 +165,18 @@ public class UserDetailsActivity extends AppCompatActivity {
                         fabFavorite.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                /*
                                 Favorite favorite = new Favorite(username, name, avatar,
                                         company, location, followers, following);
+                                 */
+                                Favorite favorite = new Favorite();
+                                favorite.setUsername(username);
+                                favorite.setRealName(name);
+                                favorite.setAvatar(avatar);
+                                favorite.setCompany(company);
+                                favorite.setLocation(location);
+                                favorite.setFollowing(following);
+                                favorite.setFollowers(followers);
                                 insertFavorite(favorite);
                             }
                         });
