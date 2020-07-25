@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.ngoding.consumerapp.MainActivity;
 import com.ngoding.consumerapp.R;
-import com.ngoding.consumerapp.database.Favorite;
 
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder> {
 
@@ -30,9 +30,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     @Override
     public void onBindViewHolder(@NonNull final FavoriteViewHolder holder, int position) {
         if (mCursor.moveToPosition(position)) {
-            holder.tvUsername.setText(mCursor.getString(mCursor.getColumnIndexOrThrow(Favorite.COLUMN_USERNAME)));
+            holder.tvUsername.setText(mCursor.getString(mCursor.getColumnIndexOrThrow(MainActivity.COLUMN_USERNAME)));
             Glide.with(holder.itemView.getContext())
-                    .load(mCursor.getString(mCursor.getColumnIndexOrThrow(Favorite.COLUMN_AVATAR)))
+                    .load(mCursor.getString(mCursor.getColumnIndexOrThrow(MainActivity.COLUMN_AVATAR)))
                     .apply(new RequestOptions().override(55, 55))
                     .into(holder.imgAvatar);
         }

@@ -14,14 +14,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ngoding.consumerapp.adapter.FavoriteAdapter;
-import com.ngoding.consumerapp.database.Favorite;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String TABLE_NAME = "favorite_table";
+    public static final String COLUMN_USERNAME = "username";
+    public static final String COLUMN_AVATAR = "avatar";
 
     private FavoriteAdapter favoriteAdapter;
     private static final String AUTHORITY = "com.ngoding.githubuserapp";
     private static final Uri URI_FAVORITE = Uri.parse(
-            "content://" + AUTHORITY + "/" + Favorite.TABLE_NAME);
+            "content://" + AUTHORITY + "/" + TABLE_NAME);
     private static final int LOADER_FAVORITE = 1;
 
     @Override
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
             return new CursorLoader(
-                    getApplicationContext(), URI_FAVORITE, new String[]{Favorite.COLUMN_USERNAME},
+                    getApplicationContext(), URI_FAVORITE, new String[]{COLUMN_USERNAME},
                     null,
                     null,
                     null);
