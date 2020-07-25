@@ -45,24 +45,24 @@ public class MainActivity extends AppCompatActivity {
 
     private final LoaderManager.LoaderCallbacks<Cursor> mLoaderCallbacks =
             new LoaderManager.LoaderCallbacks<Cursor>() {
-        @NonNull
-        @Override
-        public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-            return new CursorLoader(
-                    getApplicationContext(), URI_FAVORITE, new String[]{COLUMN_USERNAME},
-                    null,
-                    null,
-                    null);
-        }
+                @NonNull
+                @Override
+                public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+                    return new CursorLoader(
+                            getApplicationContext(), URI_FAVORITE, new String[]{COLUMN_USERNAME},
+                            null,
+                            null,
+                            null);
+                }
 
-        @Override
-        public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-            favoriteAdapter.setFavorites(data);
-        }
+                @Override
+                public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+                    favoriteAdapter.setFavorites(data);
+                }
 
-        @Override
-        public void onLoaderReset(@NonNull Loader<Cursor> loader) {
-            favoriteAdapter.setFavorites(null);
-        }
-    };
+                @Override
+                public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+                    favoriteAdapter.setFavorites(null);
+                }
+            };
 }
