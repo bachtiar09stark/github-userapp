@@ -38,7 +38,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         if (mCursor.moveToPosition(position)) {
             holder.tvUsername.setText(mCursor.getString(mCursor.getColumnIndexOrThrow(Favorite.COLUMN_USERNAME)));
             Glide.with(holder.itemView.getContext())
-                    .load(Favorite.COLUMN_AVATAR)
+                    .load(mCursor.getString(mCursor.getColumnIndexOrThrow(Favorite.COLUMN_AVATAR)))
                     .apply(new RequestOptions().override(55, 55))
                     .into(holder.imgAvatar);
         }
