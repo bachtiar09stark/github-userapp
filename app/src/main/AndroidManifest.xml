@@ -17,9 +17,7 @@
             android:name=".provider.FavoriteContentProvider"
             android:authorities="com.ngoding.githubuserapp"
             android:enabled="true"
-            android:exported="true"
-            android:readPermission="com.ngoding.githubuserapp.READ_DATA"
-            android:writePermission="com.ngoding.githubuserapp.WRITE_DATABASE"/>
+            android:exported="true"/>
 
         <receiver
             android:name=".receiver.AlarmReceiver"
