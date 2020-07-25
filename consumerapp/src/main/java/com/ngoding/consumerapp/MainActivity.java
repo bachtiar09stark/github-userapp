@@ -43,11 +43,13 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
                     favoriteAdapter.setFavorites(data);
+                    imgFavNotFound.setVisibility(View.GONE);
                 }
 
                 @Override
                 public void onLoaderReset(@NonNull Loader<Cursor> loader) {
                     favoriteAdapter.setFavorites(null);
+                    imgFavNotFound.setVisibility(View.VISIBLE);
                 }
             };
 
@@ -65,12 +67,6 @@ public class MainActivity extends AppCompatActivity {
         favoriteAdapter = new FavoriteAdapter();
         favoriteAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(favoriteAdapter);
-
-        if (favoriteAdapter.getItemCount() != 0) {
-            imgFavNotFound.setVisibility(View.GONE);
-        } else {
-            imgFavNotFound.setVisibility(View.VISIBLE);
-        }
 
         LoaderManager.getInstance(this).initLoader(LOADER_FAVORITE, null, mLoaderCallbacks);
     }
