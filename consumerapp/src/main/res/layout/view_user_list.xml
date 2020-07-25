@@ -52,12 +52,12 @@
                 tools:text="@string/txt_username" />
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="16dp"
                 android:contentDescription="@string/icon_more_detail"
-                android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
+                android:src="@drawable/ic_baseline_favorite_24" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
