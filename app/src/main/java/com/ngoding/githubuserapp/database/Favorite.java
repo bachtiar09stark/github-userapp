@@ -21,7 +21,17 @@ public class Favorite implements Parcelable {
     public static final String COLUMN_LOCATION = "location";
     public static final String COLUMN_FOLLOWERS = "followers";
     public static final String COLUMN_FOLLOWING = "following";
+    public static final Creator<Favorite> CREATOR = new Creator<Favorite>() {
+        @Override
+        public Favorite createFromParcel(Parcel in) {
+            return new Favorite(in);
+        }
 
+        @Override
+        public Favorite[] newArray(int size) {
+            return new Favorite[size];
+        }
+    };
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(index = true, name = COLUMN_ID)
     private long id;
@@ -64,6 +74,35 @@ public class Favorite implements Parcelable {
         following = in.readString();
     }
 
+    public static Favorite fromContentValues(ContentValues values) {
+        Favorite favorite = new Favorite();
+        if (values != null && values.containsKey(COLUMN_ID)) {
+            favorite.setId(values.getAsInteger(COLUMN_ID));
+        }
+        if (values != null && values.containsKey(COLUMN_USERNAME)) {
+            favorite.setUsername(values.getAsString(COLUMN_USERNAME));
+        }
+        if (values != null && values.containsKey(COLUMN_REAL_NAME)) {
+            favorite.setRealName(values.getAsString(COLUMN_REAL_NAME));
+        }
+        if (values != null && values.containsKey(COLUMN_AVATAR)) {
+            favorite.setAvatar(values.getAsString(COLUMN_AVATAR));
+        }
+        if (values != null && values.containsKey(COLUMN_COMPANY)) {
+            favorite.setCompany(values.getAsString(COLUMN_COMPANY));
+        }
+        if (values != null && values.containsKey(COLUMN_LOCATION)) {
+            favorite.setLocation(values.getAsString(COLUMN_LOCATION));
+        }
+        if (values != null && values.containsKey(COLUMN_FOLLOWERS)) {
+            favorite.setFollowers(values.getAsString(COLUMN_FOLLOWERS));
+        }
+        if (values != null && values.containsKey(COLUMN_FOLLOWING)) {
+            favorite.setFollowing(values.getAsString(COLUMN_FOLLOWING));
+        }
+        return favorite;
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(id);
@@ -80,18 +119,6 @@ public class Favorite implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
-    public static final Creator<Favorite> CREATOR = new Creator<Favorite>() {
-        @Override
-        public Favorite createFromParcel(Parcel in) {
-            return new Favorite(in);
-        }
-
-        @Override
-        public Favorite[] newArray(int size) {
-            return new Favorite[size];
-        }
-    };
 
     public long getId() {
         return id;
@@ -155,35 +182,6 @@ public class Favorite implements Parcelable {
 
     public void setFollowing(String following) {
         this.following = following;
-    }
-
-    public static Favorite fromContentValues(ContentValues values) {
-        Favorite favorite = new Favorite();
-        if (values != null && values.containsKey(COLUMN_ID)) {
-            favorite.setId(values.getAsInteger(COLUMN_ID));
-        }
-        if (values != null && values.containsKey(COLUMN_USERNAME)) {
-            favorite.setUsername(values.getAsString(COLUMN_USERNAME));
-        }
-        if (values != null && values.containsKey(COLUMN_REAL_NAME)) {
-            favorite.setRealName(values.getAsString(COLUMN_REAL_NAME));
-        }
-        if (values != null && values.containsKey(COLUMN_AVATAR)) {
-            favorite.setAvatar(values.getAsString(COLUMN_AVATAR));
-        }
-        if (values != null && values.containsKey(COLUMN_COMPANY)) {
-            favorite.setCompany(values.getAsString(COLUMN_COMPANY));
-        }
-        if (values != null && values.containsKey(COLUMN_LOCATION)) {
-            favorite.setLocation(values.getAsString(COLUMN_LOCATION));
-        }
-        if (values != null && values.containsKey(COLUMN_FOLLOWERS)) {
-            favorite.setFollowers(values.getAsString(COLUMN_FOLLOWERS));
-        }
-        if (values != null && values.containsKey(COLUMN_FOLLOWING)) {
-            favorite.setFollowing(values.getAsString(COLUMN_FOLLOWING));
-        }
-        return favorite;
     }
 
 }

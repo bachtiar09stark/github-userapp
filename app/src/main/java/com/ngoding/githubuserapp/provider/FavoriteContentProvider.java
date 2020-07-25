@@ -18,21 +18,17 @@ import com.ngoding.githubuserapp.database.FavoriteDatabase;
 public class FavoriteContentProvider extends ContentProvider {
 
     public static final String TAG = FavoriteContentProvider.class.getName();
-
-    private FavoriteDao favoriteDao;
-
     public static final String AUTHORITY = "com.ngoding.githubuserapp";
-
     public static final int ID_PERSON_DATA = 1;
-
     public static final int ID_PERSON_DATA_ITEM = 2;
-
     public static final UriMatcher URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
 
     static {
         URI_MATCHER.addURI(AUTHORITY, Favorite.TABLE_NAME, ID_PERSON_DATA);
         URI_MATCHER.addURI(AUTHORITY, Favorite.TABLE_NAME + "/*", ID_PERSON_DATA_ITEM);
     }
+
+    private FavoriteDao favoriteDao;
 
     @Override
     public boolean onCreate() {
