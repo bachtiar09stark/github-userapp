@@ -19,7 +19,7 @@ import com.ngoding.consumerapp.database.Favorite;
 public class MainActivity extends AppCompatActivity {
 
     private FavoriteAdapter favoriteAdapter;
-    private static final String AUTHORITY = "com.ngoding.githubuserapp.provider.FavoriteContentProvider";
+    private static final String AUTHORITY = "com.ngoding.githubuserapp.provider";
     private static final Uri URI_FAVORITE = Uri.parse(
             "content://" + AUTHORITY + "/" + Favorite.TABLE_NAME);
     private static final int LOADER_FAVORITE = 1;
