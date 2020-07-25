@@ -1,6 +1,5 @@
 package com.ngoding.consumerapp.database;
 
-import android.content.ContentValues;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.BaseColumns;
@@ -39,16 +38,6 @@ public class Favorite implements Parcelable {
     private String followers;
     @ColumnInfo(name = COLUMN_FOLLOWING)
     private String following;
-
-    public Favorite(String username, String realName, String avatar, String company, String location, String followers, String following) {
-        this.username = username;
-        this.realName = realName;
-        this.avatar = avatar;
-        this.company = company;
-        this.location = location;
-        this.followers = followers;
-        this.following = following;
-    }
 
     public Favorite() {
     }
@@ -155,35 +144,6 @@ public class Favorite implements Parcelable {
 
     public void setFollowing(String following) {
         this.following = following;
-    }
-
-    public static Favorite fromContentValues(ContentValues values) {
-        Favorite favorite = new Favorite();
-        if (values != null && values.containsKey(COLUMN_ID)) {
-            favorite.setId(values.getAsInteger(COLUMN_ID));
-        }
-        if (values != null && values.containsKey(COLUMN_USERNAME)) {
-            favorite.setUsername(values.getAsString(COLUMN_USERNAME));
-        }
-        if (values != null && values.containsKey(COLUMN_REAL_NAME)) {
-            favorite.setRealName(values.getAsString(COLUMN_REAL_NAME));
-        }
-        if (values != null && values.containsKey(COLUMN_AVATAR)) {
-            favorite.setAvatar(values.getAsString(COLUMN_AVATAR));
-        }
-        if (values != null && values.containsKey(COLUMN_COMPANY)) {
-            favorite.setCompany(values.getAsString(COLUMN_COMPANY));
-        }
-        if (values != null && values.containsKey(COLUMN_LOCATION)) {
-            favorite.setLocation(values.getAsString(COLUMN_LOCATION));
-        }
-        if (values != null && values.containsKey(COLUMN_FOLLOWERS)) {
-            favorite.setFollowers(values.getAsString(COLUMN_FOLLOWERS));
-        }
-        if (values != null && values.containsKey(COLUMN_FOLLOWING)) {
-            favorite.setFollowing(values.getAsString(COLUMN_FOLLOWING));
-        }
-        return favorite;
     }
 
 }
