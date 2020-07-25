@@ -32,7 +32,7 @@ public interface FavoriteDao {
     @Insert
     long insertFav(Favorite favorite);
 
-    @Query("SELECT * FROM " + Favorite.TABLE_NAME)
+    @Query("SELECT * FROM " + Favorite.TABLE_NAME + " ORDER BY " + Favorite.COLUMN_USERNAME + " DESC")
     Cursor selectAll();
 
     @Query("DELETE FROM " + Favorite.TABLE_NAME + " WHERE " + Favorite.COLUMN_ID + " = :id")
