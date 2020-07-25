@@ -18,12 +18,6 @@ import com.ngoding.consumerapp.database.Favorite;
 
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder> {
 
-    private OnItemClickCallback onItemClickCallback;
-
-    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
-        this.onItemClickCallback = onItemClickCallback;
-    }
-
     private Cursor mCursor;
 
     @NonNull
@@ -47,10 +41,6 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     @Override
     public int getItemCount() {
         return mCursor == null ? 0 : mCursor.getCount();
-    }
-
-    public interface OnItemClickCallback {
-        void onItemClicked(Favorite data);
     }
 
     public void setFavorites(Cursor cursor) {
