@@ -58,7 +58,7 @@ public class HomeViewModel extends AndroidViewModel {
                     viewLoading.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.GONE);
                     imgAnimError.setVisibility(View.VISIBLE);
-                    Toast.makeText(getApplication().getApplicationContext(), statusCode + " : " + R.string.connection_error, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplication().getApplicationContext(), statusCode + " : " + "Connection Error", Toast.LENGTH_SHORT).show();
                 }
             }
 
