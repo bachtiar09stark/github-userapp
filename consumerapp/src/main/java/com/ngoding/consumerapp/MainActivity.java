@@ -44,12 +44,14 @@ public class MainActivity extends AppCompatActivity {
                 public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
                     favoriteAdapter.setFavorites(data);
                     imgFavNotFound.setVisibility(View.GONE);
+                    if (favoriteAdapter.getItemCount() == 0) {
+                        imgFavNotFound.setVisibility(View.VISIBLE);
+                    }
                 }
 
                 @Override
                 public void onLoaderReset(@NonNull Loader<Cursor> loader) {
                     favoriteAdapter.setFavorites(null);
-                    imgFavNotFound.setVisibility(View.VISIBLE);
                 }
             };
 
