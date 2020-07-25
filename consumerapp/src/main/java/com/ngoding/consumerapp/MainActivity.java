@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-                    if (data != null) {
+                    if (favoriteAdapter.getItemCount() != 0) {
                         favoriteAdapter.setFavorites(data);
                         imgFavNotFound.setVisibility(View.GONE);
                     } else {
