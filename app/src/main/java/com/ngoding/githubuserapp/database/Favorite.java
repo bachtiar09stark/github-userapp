@@ -64,7 +64,7 @@ public class Favorite implements Parcelable {
     public Favorite() {
     }
 
-    public Favorite(Parcel in) {
+    protected Favorite(Parcel in) {
         id = in.readInt();
         username = in.readString();
         realName = in.readString();
@@ -115,6 +115,7 @@ public class Favorite implements Parcelable {
     public void setRealName(String realName) {
         this.realName = realName;
     }
+
     public String getAvatar() {
         return avatar;
     }
