@@ -36,25 +36,19 @@ public class MainActivity extends AppCompatActivity {
         imgGithubMark.setAnimation(firstAnim);
 
         int TIME_DELAY_ANIM = 3000;
-        imgGithubMark.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                imgGithubMark.setVisibility(View.INVISIBLE);
-                imgGithubLogo.setAnimation(secondAnim);
-                tvGithubLogo.setAnimation(secondAnim);
-                imgGithubLogo.setVisibility(View.VISIBLE);
-                tvGithubLogo.setVisibility(View.VISIBLE);
-            }
+        imgGithubMark.postDelayed(() -> {
+            imgGithubMark.setVisibility(View.INVISIBLE);
+            imgGithubLogo.setAnimation(secondAnim);
+            tvGithubLogo.setAnimation(secondAnim);
+            imgGithubLogo.setVisibility(View.VISIBLE);
+            tvGithubLogo.setVisibility(View.VISIBLE);
         }, TIME_DELAY_ANIM);
 
         int SPLASH_SCREEN = 5000;
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        new Handler().postDelayed(() -> {
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
         }, SPLASH_SCREEN);
     }
 }

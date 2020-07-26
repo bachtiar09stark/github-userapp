@@ -50,6 +50,7 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
 
         final long identityToken = Binder.clearCallingIdentity();
 
+        FavoritesWidget.sendRefreshBroadcast(context);
         cursor = context.getContentResolver().query(URI_FAVORITE, null, null, null, "username");
 
         Binder.restoreCallingIdentity(identityToken);

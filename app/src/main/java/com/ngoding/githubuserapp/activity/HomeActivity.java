@@ -16,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,10 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.ngoding.githubuserapp.R;
 import com.ngoding.githubuserapp.adapter.UserAdapter;
-import com.ngoding.githubuserapp.model.User;
 import com.ngoding.githubuserapp.viewmodel.HomeViewModel;
-
-import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -67,30 +63,21 @@ public class HomeActivity extends AppCompatActivity {
 
         showAnimSearch(true);
 
-        homeViewModel.getUserData().observe(this, new Observer<ArrayList<User>>() {
-            @Override
-            public void onChanged(ArrayList<User> users) {
-                if (users != null) {
-                    adapter.setData(users);
-                }
+        homeViewModel.getUserData().observe(this, users -> {
+            if (users != null) {
+                adapter.setData(users);
             }
         });
 
-        adapter.setOnItemClickCallback(new UserAdapter.OnItemClickCallback() {
-            @Override
-            public void onItemClicked(User data) {
-                Intent intent = new Intent(HomeActivity.this, UserDetailsActivity.class);
-                intent.putExtra(UserDetailsActivity.EXTRA_USER, data);
-                startActivity(intent);
-            }
+        adapter.setOnItemClickCallback(data -> {
+            Intent intent = new Intent(HomeActivity.this, UserDetailsActivity.class);
+            intent.putExtra(UserDetailsActivity.EXTRA_USER, data);
+            startActivity(intent);
         });
 
-        fabFavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, FavoriteActivity.class);
-                startActivity(intent);
-            }
+        fabFavorite.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, FavoriteActivity.class);
+            startActivity(intent);
         });
     }
 

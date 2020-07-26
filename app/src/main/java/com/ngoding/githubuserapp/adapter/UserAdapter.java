@@ -49,12 +49,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewModel>
                 .apply(new RequestOptions().override(55, 55))
                 .into(holder.imgAvatar);
 
-        holder.cvUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onItemClickCallback.onItemClicked(mData.get(holder.getAdapterPosition()));
-            }
-        });
+        holder.cvUser.setOnClickListener(v -> onItemClickCallback.onItemClicked(mData.get(holder.getAdapterPosition())));
     }
 
     @Override

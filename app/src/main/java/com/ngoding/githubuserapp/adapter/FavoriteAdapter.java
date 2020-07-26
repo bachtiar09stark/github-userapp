@@ -61,12 +61,7 @@ public class FavoriteAdapter extends ListAdapter<Favorite, FavoriteAdapter.Favor
                 .apply(new RequestOptions().override(55, 55))
                 .into(holder.imgAvatar);
 
-        holder.cvUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onItemClickCallback.onItemClicked(getItem(holder.getAdapterPosition()));
-            }
-        });
+        holder.cvUser.setOnClickListener(v -> onItemClickCallback.onItemClicked(getItem(holder.getAdapterPosition())));
     }
 
     public interface OnItemClickCallback {
