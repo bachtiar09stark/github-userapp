@@ -23,6 +23,9 @@
                 android:resource="@xml/favorites_widget_info" />
         </receiver>
 
+        <service android:name=".widget.StackWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+
         <provider
             android:name=".provider.FavoriteContentProvider"
             android:authorities="com.ngoding.githubuserapp"

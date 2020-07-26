@@ -1,6 +1,7 @@
 package com.ngoding.githubuserapp.database;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.BaseColumns;
@@ -8,6 +9,8 @@ import android.provider.BaseColumns;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import com.google.gson.annotations.Expose;
 
 @Entity(tableName = Favorite.TABLE_NAME)
 public class Favorite implements Parcelable {
@@ -34,6 +37,7 @@ public class Favorite implements Parcelable {
     };
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(index = true, name = COLUMN_ID)
+    @Expose
     private long id;
     @ColumnInfo(name = COLUMN_USERNAME)
     private String username;
@@ -63,7 +67,13 @@ public class Favorite implements Parcelable {
     public Favorite() {
     }
 
-    protected Favorite(Parcel in) {
+    public Favorite(Cursor cursor) {
+        this.id = cursor.getLong(cursor.getColumnIndex(COLUMN_ID));
+        this.username = cursor.getString(cursor.getColumnIndex(COLUMN_USERNAME));
+        this.avatar = cursor.getString(cursor.getColumnIndex(COLUMN_AVATAR));
+    }
+
+    public Favorite(Parcel in) {
         id = in.readLong();
         username = in.readString();
         realName = in.readString();
