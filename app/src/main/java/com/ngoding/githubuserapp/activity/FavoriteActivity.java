@@ -2,7 +2,6 @@ package com.ngoding.githubuserapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
@@ -10,7 +9,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,10 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.ngoding.githubuserapp.R;
 import com.ngoding.githubuserapp.adapter.FavoriteAdapter;
-import com.ngoding.githubuserapp.database.Favorite;
 import com.ngoding.githubuserapp.viewmodel.FavoriteViewModel;
-
-import java.util.List;
 
 public class FavoriteActivity extends AppCompatActivity {
 
@@ -59,76 +54,59 @@ public class FavoriteActivity extends AppCompatActivity {
         recyclerView.setAdapter(favoriteAdapter);
 
         favoriteViewModel = ViewModelProviders.of(this).get(FavoriteViewModel.class);
-        favoriteViewModel.getAllFavorites().observe(this, new Observer<List<Favorite>>() {
-            @Override
-            public void onChanged(List<Favorite> favorites) {
-                favoriteAdapter.submitList(favorites);
-            }
-        });
+        favoriteViewModel.getAllFavorites().observe(this, favorites -> favoriteAdapter.submitList(favorites));
 
-        favoriteAdapter.setOnItemClickCallback(new FavoriteAdapter.OnItemClickCallback() {
-            @Override
-            public void onItemClicked(Favorite data) {
-                Intent intent = new Intent(FavoriteActivity.this, UserDetailsActivity.class);
-                intent.putExtra(UserDetailsActivity.EXTRA_FAVORITE, data);
-                startActivity(intent);
-            }
+        favoriteAdapter.setOnItemClickCallback(data -> {
+            Intent intent = new Intent(FavoriteActivity.this, UserDetailsActivity.class);
+            intent.putExtra(UserDetailsActivity.EXTRA_FAVORITE, data);
+            startActivity(intent);
         });
 
         deleteUserFavorite();
     }
 
     private void deleteUserFavorite() {
-        fabDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isOpen) {
-                    fabDeleteAll.startAnimation(animFabClose);
-                    fabDeleteSweep.startAnimation(animFabClose);
-                    fabDelete.setIconResource(R.drawable.ic_baseline_delete_24);
-                    fabDeleteAll.setClickable(false);
-                    fabDeleteSweep.setClickable(false);
-                    isOpen = false;
+        fabDelete.setOnClickListener(v -> {
+            if (isOpen) {
+                fabDeleteAll.startAnimation(animFabClose);
+                fabDeleteSweep.startAnimation(animFabClose);
+                fabDelete.setIconResource(R.drawable.ic_baseline_delete_24);
+                fabDeleteAll.setClickable(false);
+                fabDeleteSweep.setClickable(false);
+                isOpen = false;
 
-                } else {
-                    fabDeleteAll.startAnimation(animFabOpen);
-                    fabDeleteSweep.startAnimation(animFabOpen);
-                    fabDelete.setIconResource(R.drawable.ic_baseline_close_24);
-                    fabDeleteAll.setClickable(true);
-                    fabDeleteSweep.setClickable(true);
-                    isOpen = true;
-                }
+            } else {
+                fabDeleteAll.startAnimation(animFabOpen);
+                fabDeleteSweep.startAnimation(animFabOpen);
+                fabDelete.setIconResource(R.drawable.ic_baseline_close_24);
+                fabDeleteAll.setClickable(true);
+                fabDeleteSweep.setClickable(true);
+                isOpen = true;
             }
         });
 
-        fabDeleteSweep.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isOpen) {
-                    deleteSweep();
-                    fabDeleteAll.startAnimation(animFabClose);
-                    fabDeleteSweep.startAnimation(animFabClose);
-                    fabDelete.setIconResource(R.drawable.ic_baseline_delete_24);
-                    fabDeleteAll.setClickable(false);
-                    fabDeleteSweep.setClickable(false);
-                    isOpen = false;
-                }
+        fabDeleteSweep.setOnClickListener(v -> {
+            if (isOpen) {
+                deleteSweep();
+                fabDeleteAll.startAnimation(animFabClose);
+                fabDeleteSweep.startAnimation(animFabClose);
+                fabDelete.setIconResource(R.drawable.ic_baseline_delete_24);
+                fabDeleteAll.setClickable(false);
+                fabDeleteSweep.setClickable(false);
+                isOpen = false;
             }
         });
 
-        fabDeleteAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isOpen) {
-                    favoriteViewModel.deleteAllFavorites();
-                    Toast.makeText(FavoriteActivity.this, R.string.txt_all_favorites_deleted, Toast.LENGTH_SHORT).show();
-                    fabDeleteAll.startAnimation(animFabClose);
-                    fabDeleteSweep.startAnimation(animFabClose);
-                    fabDelete.setIconResource(R.drawable.ic_baseline_delete_24);
-                    fabDeleteAll.setClickable(false);
-                    fabDeleteSweep.setClickable(false);
-                    isOpen = false;
-                }
+        fabDeleteAll.setOnClickListener(v -> {
+            if (isOpen) {
+                favoriteViewModel.deleteAllFavorites();
+                Toast.makeText(FavoriteActivity.this, R.string.txt_all_favorites_deleted, Toast.LENGTH_SHORT).show();
+                fabDeleteAll.startAnimation(animFabClose);
+                fabDeleteSweep.startAnimation(animFabClose);
+                fabDelete.setIconResource(R.drawable.ic_baseline_delete_24);
+                fabDeleteAll.setClickable(false);
+                fabDeleteSweep.setClickable(false);
+                isOpen = false;
             }
         });
     }

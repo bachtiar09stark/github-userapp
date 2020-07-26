@@ -29,6 +29,7 @@ import com.ngoding.githubuserapp.database.FavoriteDatabase;
 import com.ngoding.githubuserapp.model.User;
 import com.ngoding.githubuserapp.model.UserDetails;
 import com.ngoding.githubuserapp.viewmodel.FavoriteViewModel;
+import com.ngoding.githubuserapp.widget.FavoritesWidget;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
@@ -162,13 +163,10 @@ public class UserDetailsActivity extends AppCompatActivity {
                                 .load(avatar)
                                 .into(circleAvatar);
 
-                        fabFavorite.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Favorite favorite = new Favorite(username, name, avatar,
-                                        company, location, followers, following);
-                                insertFavorite(favorite);
-                            }
+                        fabFavorite.setOnClickListener(v -> {
+                            Favorite favorite = new Favorite(username, name, avatar,
+                                    company, location, followers, following);
+                            insertFavorite(favorite);
                         });
 
                     } else {
@@ -207,12 +205,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                 .load(favorite.getAvatar())
                 .into(circleAvatar);
 
-        fabFavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                deleteFavorite(favorite, user);
-            }
-        });
+        fabFavorite.setOnClickListener(v -> deleteFavorite(favorite, user));
     }
 
     private void deleteFavorite(Favorite favorite, User user) {
@@ -233,6 +226,7 @@ public class UserDetailsActivity extends AppCompatActivity {
         setStatusFavorite(statusFavorite);
         Intent intent = new Intent(UserDetailsActivity.this, FavoriteActivity.class);
         startActivity(intent);
+        FavoritesWidget.sendRefreshBroadcast(UserDetailsActivity.this);
         Toast.makeText(UserDetailsActivity.this, R.string.txt_favorite_saved, Toast.LENGTH_SHORT).show();
         finish();
     }

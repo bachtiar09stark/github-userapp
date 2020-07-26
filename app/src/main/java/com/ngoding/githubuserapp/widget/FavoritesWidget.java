@@ -3,6 +3,7 @@ package com.ngoding.githubuserapp.widget;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -55,6 +56,12 @@ public class FavoritesWidget extends AppWidgetProvider {
                 Toast.makeText(context, "Touched view " + viewIndex, Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    public static void sendRefreshBroadcast(Context context) {
+        Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        intent.setComponent(new ComponentName(context, FavoritesWidget.class));
+        context.sendBroadcast(intent);
     }
 }
 
