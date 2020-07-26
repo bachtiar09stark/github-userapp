@@ -1,5 +1,6 @@
 package com.ngoding.githubuserapp.widget;
 
+import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -18,6 +19,7 @@ import com.ngoding.githubuserapp.database.Favorite;
 import java.util.concurrent.ExecutionException;
 
 public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
+    int mAppWidgetId;
     private Context context;
     private Cursor cursor;
 
@@ -26,9 +28,11 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
     private static final Uri URI_FAVORITE = Uri.parse(
             "content://" + AUTHORITY + "/" + TABLE_NAME);
 
-    public StackRemoteViewsFactory(Context context) {
+    public StackRemoteViewsFactory(Context context, Intent intent) {
         this.context = context;
+        int mAppWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
     }
+
 
     @Override
     public void onCreate() {
@@ -72,7 +76,8 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
         Favorite favorite = getItem(position);
         String avatar = favorite.getAvatar();
 
-        if (position == AdapterView.INVALID_POSITION || cursor == null || !cursor.moveToPosition(position)) {
+        if (position == AdapterView.INVALID_POSITION ||
+                cursor == null || !cursor.moveToPosition(position)) {
             return null;
         }
 
