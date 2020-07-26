@@ -216,7 +216,6 @@ public class UserDetailsActivity extends AppCompatActivity {
             Intent intent = new Intent(UserDetailsActivity.this, FavoriteActivity.class);
             startActivity(intent);
         }
-        FavoritesWidget.sendRefreshBroadcast(UserDetailsActivity.this);
         Toast.makeText(UserDetailsActivity.this, R.string.txt_favorite_deleted, Toast.LENGTH_SHORT).show();
         finish();
     }

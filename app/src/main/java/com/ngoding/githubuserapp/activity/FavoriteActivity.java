@@ -18,7 +18,6 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.ngoding.githubuserapp.R;
 import com.ngoding.githubuserapp.adapter.FavoriteAdapter;
 import com.ngoding.githubuserapp.viewmodel.FavoriteViewModel;
-import com.ngoding.githubuserapp.widget.FavoritesWidget;
 
 public class FavoriteActivity extends AppCompatActivity {
 
@@ -101,7 +100,6 @@ public class FavoriteActivity extends AppCompatActivity {
         fabDeleteAll.setOnClickListener(v -> {
             if (isOpen) {
                 favoriteViewModel.deleteAllFavorites();
-                FavoritesWidget.sendRefreshBroadcast(FavoriteActivity.this);
                 Toast.makeText(FavoriteActivity.this, R.string.txt_all_favorites_deleted, Toast.LENGTH_SHORT).show();
                 fabDeleteAll.startAnimation(animFabClose);
                 fabDeleteSweep.startAnimation(animFabClose);
@@ -124,7 +122,6 @@ public class FavoriteActivity extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 favoriteViewModel.delete(favoriteAdapter.getFavoriteAt(viewHolder.getAdapterPosition()));
-                FavoritesWidget.sendRefreshBroadcast(FavoriteActivity.this);
                 Toast.makeText(FavoriteActivity.this, R.string.txt_favorite_deleted, Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
