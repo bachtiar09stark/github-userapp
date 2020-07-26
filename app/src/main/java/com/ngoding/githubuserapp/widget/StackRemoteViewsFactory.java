@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Bundle;
+import android.os.Binder;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -35,9 +35,6 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
 
     @Override
     public void onCreate() {
-        cursor = context.getContentResolver().query(
-                URI_FAVORITE, null, null, null, null
-        );
     }
 
     private Favorite getItem(int position) {
@@ -50,16 +47,27 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
 
     @Override
     public void onDataSetChanged() {
+        if (cursor != null) {
+            cursor.close();
+        }
+
+        final long identityToken = Binder.clearCallingIdentity();
+
+        cursor = context.getContentResolver().query(URI_FAVORITE, null, null, null, null);
+
+        Binder.restoreCallingIdentity(identityToken);
     }
 
     @Override
     public void onDestroy() {
-
+        if (cursor != null) {
+            cursor.close();
+        }
     }
 
     @Override
     public int getCount() {
-        return cursor.getCount();
+        return cursor == null ? 0 : cursor.getCount();
     }
 
     @Override
@@ -81,12 +89,10 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
         }
         remoteViews.setImageViewBitmap(R.id.imgWidget, bmp);
 
-        Bundle bundle = new Bundle();
-        bundle.putInt(FavoritesWidget.EXTRA_ITEM, position);
-        Intent intent = new Intent();
-        intent.putExtras(bundle);
+        Intent fillInIntent = new Intent();
+        fillInIntent.putExtra(FavoritesWidget.EXTRA_ITEM, cursor.getString(1));
 
-        remoteViews.setOnClickFillInIntent(R.id.imgWidget, intent);
+        remoteViews.setOnClickFillInIntent(R.id.imgWidget, fillInIntent);
         return remoteViews;
     }
 
@@ -102,11 +108,11 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return cursor.moveToPosition(position) ? cursor.getLong(0) : position;
     }
 
     @Override
     public boolean hasStableIds() {
-        return false;
+        return true;
     }
 }
