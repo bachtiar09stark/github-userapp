@@ -13,8 +13,8 @@ import com.ngoding.githubuserapp.R;
 
 public class FavoritesWidget extends AppWidgetProvider {
 
-    public static final String EXTRA_ITEM = "com.candraibra.moviecatalog.EXTRA_ITEM";
-    private static final String TOAST_ACTION = "com.candraibra.moviecatalog.TOAST_ACTION";
+    public static final String EXTRA_ITEM = "com.ngoding.githubuserapp.EXTRA_ITEM";
+    private static final String TOAST_ACTION = "com.ngoding.githubuserapp.TOAST_ACTION";
 
     private static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
 
