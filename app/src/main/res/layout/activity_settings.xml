@@ -31,7 +31,8 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground">
 
         <ImageView
             android:id="@+id/ic_language"
@@ -79,7 +80,8 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
 
         <ImageView
             android:id="@+id/ic_reminder"
