@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 import com.ngoding.githubuserapp.R;
 
@@ -49,9 +48,11 @@ public class FavoritesWidget extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
         if (intent.getAction() != null) {
-            if (intent.getAction().equals(TOAST_ACTION)) {
-                int viewIndex = intent.getIntExtra(EXTRA_ITEM, 0);
-                Toast.makeText(context, "Touched view " + viewIndex, Toast.LENGTH_SHORT).show();
+            if (intent.getAction().equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE)) {
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+                ComponentName favWidget = new ComponentName(context.getPackageName(), FavoritesWidget.class.getName());
+                int[] favWidgetIds = appWidgetManager.getAppWidgetIds(favWidget);
+                appWidgetManager.notifyAppWidgetViewDataChanged(favWidgetIds, R.id.stack_view);
             }
         }
     }
