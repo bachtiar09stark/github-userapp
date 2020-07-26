@@ -30,7 +30,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="6dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true">
 
         <ImageView
             android:id="@+id/ic_language"
@@ -53,14 +55,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_language"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textColor="@color/colorPrimary"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_language_selected"
-                android:textSize="18sp"/>
+                android:textSize="15sp"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -68,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
         android:layout_marginTop="6dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="75dp"
         android:layout_marginEnd="16dp"
         android:background="@color/colorPrimary"
         android:visibility="visible" />
@@ -78,7 +80,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="6dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true">
 
         <ImageView
             android:id="@+id/ic_reminder"
@@ -102,14 +106,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/title_reminder"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textColor="@color/colorPrimary"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_reminder"
-                android:textSize="18sp"/>
+                android:textSize="15sp"/>
         </LinearLayout>
 
         <androidx.appcompat.widget.SwitchCompat
@@ -124,7 +128,7 @@
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
         android:layout_marginTop="6dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="75dp"
         android:layout_marginEnd="16dp"
         android:background="@color/colorPrimary"
         android:visibility="visible" />

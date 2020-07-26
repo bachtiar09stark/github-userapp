@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
@@ -72,6 +73,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
     private void dailyAlarmOff() {
         alarmReceiver.cancelNotification(SettingsActivity.this);
+        Toast.makeText(SettingsActivity.this, R.string.reminder_off, Toast.LENGTH_SHORT).show();
     }
 
     private void dailyAlarmOn() {
@@ -79,6 +81,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         notificationPreference.setTimeDaily(timeDaily);
         notificationPreference.setDailyMessage(message);
         alarmReceiver.setAlarm(SettingsActivity.this, TYPE_DAILY, timeDaily, message);
+        Toast.makeText(SettingsActivity.this, R.string.reminder_on, Toast.LENGTH_SHORT).show();
     }
 
     @Override
