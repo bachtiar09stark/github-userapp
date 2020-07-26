@@ -13,8 +13,8 @@
     <string name="txt_name">Nom</string>
     <string name="tab_followers">SUIVEUSES</string>
     <string name="tab_following">SUIVANTE</string>
-    <string name="settings">Settings</string>
-    <string name="tv_welcome">BIENVENUE DEV.</string>
+    <string name="settings">Parametres</string>
+    <string name="tv_welcome">LET\'S START LOOKING FOR\nGITHUB USER</string>
     <string name="image_search">Image Search</string>
     <string name="favorite">Favorite</string>
     <string name="github_mark">Github Mark</string>
@@ -27,17 +27,14 @@
     <string name="txt_all_favorites_deleted">All Favorites Deleted</string>
     <string name="txt_favorite_deleted">Favorite Deleted</string>
     <string name="txt_favorite_saved">Favorite saved</string>
-    <string name="key_reminder">reminder</string>
-    <string name="txt_reminder">Reminder at 9.00 AM</string>
-    <string name="key_language">language</string>
-    <string name="txt_language">Select Language</string>
-    <string name="txt_language_selected">English</string>
-    <string name="title_reminder">Daily Reminder</string>
+    <string name="txt_reminder">Rappel a 9.00 AM</string>
+    <string name="txt_language">Choisir la Langue</string>
+    <string name="txt_language_selected">France</string>
+    <string name="title_reminder">Rappel Quotidien</string>
     <string name="daily_reminder_message">Let\'s find popular user on Github!</string>
     <string name="reminder_off">Reminder OFF</string>
     <string name="reminder_on">Reminder ON</string>
     <string name="appwidget_text">USER FAVORITES</string>
-    <string name="add_widget">Add widget</string>
     <string name="icon_daily_reminder">Icon Daily Reminder</string>
     <string name="icon_select_language">Icon Select Language</string>
 </resources>
