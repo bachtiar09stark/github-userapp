@@ -1,12 +1,12 @@
 package com.ngoding.githubuserapp.widget;
 
-import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Binder;
+import android.widget.AdapterView;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -18,7 +18,6 @@ import com.ngoding.githubuserapp.database.Favorite;
 import java.util.concurrent.ExecutionException;
 
 public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
-    int mAppWidgetId;
     private Context context;
     private Cursor cursor;
 
@@ -27,11 +26,9 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
     private static final Uri URI_FAVORITE = Uri.parse(
             "content://" + AUTHORITY + "/" + TABLE_NAME);
 
-    public StackRemoteViewsFactory(Context context, Intent intent) {
+    public StackRemoteViewsFactory(Context context) {
         this.context = context;
-        int mAppWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
     }
-
 
     @Override
     public void onCreate() {
@@ -53,7 +50,7 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
 
         final long identityToken = Binder.clearCallingIdentity();
 
-        cursor = context.getContentResolver().query(URI_FAVORITE, null, null, null, null);
+        cursor = context.getContentResolver().query(URI_FAVORITE, null, null, null, "username");
 
         Binder.restoreCallingIdentity(identityToken);
     }
@@ -74,6 +71,11 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
     public RemoteViews getViewAt(int position) {
         Favorite favorite = getItem(position);
         String avatar = favorite.getAvatar();
+
+        if (position == AdapterView.INVALID_POSITION || cursor == null || !cursor.moveToPosition(position)) {
+            return null;
+        }
+
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_item);
 
         Bitmap bmp = null;
