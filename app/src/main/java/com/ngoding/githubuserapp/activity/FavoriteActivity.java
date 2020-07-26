@@ -1,5 +1,7 @@
 package com.ngoding.githubuserapp.activity;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.animation.Animation;
@@ -18,6 +20,7 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.ngoding.githubuserapp.R;
 import com.ngoding.githubuserapp.adapter.FavoriteAdapter;
 import com.ngoding.githubuserapp.viewmodel.FavoriteViewModel;
+import com.ngoding.githubuserapp.widget.FavoritesWidget;
 
 public class FavoriteActivity extends AppCompatActivity {
 
@@ -62,6 +65,7 @@ public class FavoriteActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        updateFavStackWidget();
         deleteUserFavorite();
     }
 
@@ -125,5 +129,12 @@ public class FavoriteActivity extends AppCompatActivity {
                 Toast.makeText(FavoriteActivity.this, R.string.txt_favorite_deleted, Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
+    }
+
+    private void updateFavStackWidget() {
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+        ComponentName componentName = new ComponentName(getApplicationContext(), FavoritesWidget.class);
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(componentName);
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.stack_view);
     }
 }
