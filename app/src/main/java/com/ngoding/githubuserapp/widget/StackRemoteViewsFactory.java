@@ -18,13 +18,12 @@ import com.ngoding.githubuserapp.database.Favorite;
 import java.util.concurrent.ExecutionException;
 
 public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
-    private Context context;
-    private Cursor cursor;
-
     public static final String TABLE_NAME = "favorite_table";
     private static final String AUTHORITY = "com.ngoding.githubuserapp";
     private static final Uri URI_FAVORITE = Uri.parse(
             "content://" + AUTHORITY + "/" + TABLE_NAME);
+    private Context context;
+    private Cursor cursor;
 
     public StackRemoteViewsFactory(Context context) {
         this.context = context;

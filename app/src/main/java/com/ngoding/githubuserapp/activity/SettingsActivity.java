@@ -16,7 +16,7 @@ import com.ngoding.githubuserapp.R;
 import com.ngoding.githubuserapp.notification.AlarmReceiver;
 import com.ngoding.githubuserapp.notification.Preferences;
 
-public class SettingsActivity extends AppCompatActivity implements View.OnClickListener{
+public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
 
     AlarmReceiver alarmReceiver;
     Preferences notificationPreference;
