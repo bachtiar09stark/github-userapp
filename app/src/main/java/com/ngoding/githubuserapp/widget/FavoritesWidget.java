@@ -56,5 +56,11 @@ public class FavoritesWidget extends AppWidgetProvider {
             }
         }
     }
+
+    public static void sendRefreshBroadcast(Context context) {
+        Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        intent.setComponent(new ComponentName(context, FavoritesWidget.class));
+        context.sendBroadcast(intent);
+    }
 }
 
