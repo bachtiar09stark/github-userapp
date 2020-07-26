@@ -47,17 +47,14 @@ public class FavoritesWidget extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-        if (intent.getAction() != null) {
-            if (intent.getAction().equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE)) {
-                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-                ComponentName favWidget = new ComponentName(context.getPackageName(), FavoritesWidget.class.getName());
-                int[] favWidgetIds = appWidgetManager.getAppWidgetIds(favWidget);
-                appWidgetManager.notifyAppWidgetViewDataChanged(favWidgetIds, R.id.stack_view);
-            }
-        }
     }
 
     public static void sendRefreshBroadcast(Context context) {
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        ComponentName favWidget = new ComponentName(context.getPackageName(), FavoritesWidget.class.getName());
+        int[] favWidgetIds = appWidgetManager.getAppWidgetIds(favWidget);
+        appWidgetManager.notifyAppWidgetViewDataChanged(favWidgetIds, R.id.stack_view);
+
         Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         intent.setComponent(new ComponentName(context, FavoritesWidget.class));
         context.sendBroadcast(intent);
